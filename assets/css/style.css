@@ -16,12 +16,28 @@ body {
   background: #efefef;
 }
 
+.navbar-default .navbar-toggle {
+  border: none;
+}
+
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
+
 .pageTitle {
   font-family: NBA, Arial, 'sans-serf';
   text-align: center;
   font-size: 80px;
 }
 
+.left {
+  text-align: left;
+}
+
+.right {
+  text-align: right;
+}
 .navbar-default .navbar-brand {
   font-weight: bold;
   font-size: 22px;
@@ -52,6 +68,12 @@ body {
   margin-bottom: 0px;
 }
 
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+    border-color: #e7e7e7;
+    text-align: left;
+    font-size: 20px;
+    color: #333;
+}
 
 footer.navbar-default.navbar-fixed-bottom
  {
@@ -64,9 +86,14 @@ footer.navbar-default.navbar-fixed-bottom
       margin:0;
  }
 
-@media only screen and (max-device-width: 480px) {
-  footer.navbar-default.navbar-fixed-bottom
-   {
-        text-align: center;
+@media only screen and (max-width : 768px) {
+   footer.navbar-default.navbar-fixed-bottom p {
+     text-align: center;
+   }
+   .left {
+     text-align: center;
+   }
+   .right {
+     text-align: center;
    }
 }

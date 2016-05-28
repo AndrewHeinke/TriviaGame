@@ -35,3 +35,8 @@ var correctAnswer = [
   "Bill Cousy",
   "Tony Parker"
 ];
+
+var numCorrect = 0;
+var numIncorrect = 0;
+var numSkipped = 0;
+var questionCount = 0;
