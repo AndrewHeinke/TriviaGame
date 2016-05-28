@@ -1,0 +1,36 @@
+/* =================================================================================================
+   Andrew Heinke's custom styles
+======================================================================================================= */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  font-family: 'Roboto Slab', serif;
+  color: #333333;
+  padding-top: 0px;
+  background: #efefef;
+  margin-bottom: 100px;
+}
+
+.footer {
+  position: absolute;
+  font-family: 'Roboto Slab', serif;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 40px;
+  padding-top: 10px;
+  color: #ffffff;
+  text-align: center;
+  background-color: #363C3E;
+}
+
+.row {
+  margin-top: 25px;
+}
+
+#gitLink {
+  color: #f1c40f;
+}
