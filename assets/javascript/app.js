@@ -42,7 +42,7 @@ var correctAnswer = [
 function displayGame() {
   $("#countDown-timer").html("<h3>Seconds left: " + gameTime + "</h3>");
   $("#question").html("<h2>" + triviaQuestions[qCount] + "</h2>");
-  $("#choices").html("<p class='choice'>" + answerChoices[qCount][0] + "</p><p class='choice'>" + answerChoices[qCount][1] + "</p><p class='choice'>" + answerChoices[qCount][2] + "</p><p class='choice'>" + answerChoices[qCount][3] + "</p>");
+  $("#choices").html("<div class='choice'>" + answerChoices[qCount][0] + "</div><div class='choice'>" + answerChoices[qCount][1] + "</div><div class='choice'>" + answerChoices[qCount][2] + "</div><div class='choice'>" + answerChoices[qCount][3] + "</div>");
   $("#question-number").html("<h4>Question " + (qCount + 1) + " out of " + triviaQuestions.length + "</h4>");
 }
 
