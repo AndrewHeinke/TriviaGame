@@ -2,7 +2,7 @@
 var numCorrect = 0;
 var numIncorrect = 0;
 var notAnswered = 0;
-var qCount = 0;
+var qstnCount = 0;
 var clockInterval;
 var gameTime = 20;
 var gameStart;
@@ -15,11 +15,11 @@ var triviaQuestions = ["What year was the National Basketball Association first 
 var answerChoices = [
   ["1935", "1945", "1946", "1958"],
   ["The Chicago Bulls", "The Los Angeles Lakers", "The Boston Celtics", "The Philadelphia 76ers"],
-  ["He's named after his Uncle Kobe", "He's named after a type of steak", "He's named after the doctor who delivered him.", "He's named after a city in California"],
+  ["He's named after his Uncle Kobe", "He's named after a type of steak", "He's named after a doctor", "He's named after a city in California"],
   ["Hakeem Olajuwon & Sam Bowie", "Patrick Ewing & Hakeem Olajuwon", "Charles Barkley & Hakeem Olajuwon", "Karl Malone & Sam Bowie"],
   ["The Orlando Magic", "The LA Clippers", "The Chicago Bulls", "The Golden State Warriors"],
   ["82", "84", "86", "88"],
-  ["30", "40", "25", "35"],
+  ["30", "32", "25", "35"],
   ["Michael Jordan", "Bill Cousy", "Jerry West", "Pat Riley"],
   ["George Gervin", "David Robinson", "Tim Duncan", "Terry Cummings"],
   ["Tony Parker", "Johnny Moore", "Alvin Robertson","Avery Johnson"]
@@ -38,12 +38,12 @@ var correctAnswer = [
   "David Robinson",
   "Tony Parker"
 ];
-
+$(document).ready(function() {
 function displayGame() {
   $("#countDown-timer").html("<h3>Seconds left: " + gameTime + "</h3>");
-  $("#question").html("<h2>" + triviaQuestions[qCount] + "</h2>");
-  $("#choices").html("<div class='choice'>" + answerChoices[qCount][0] + "</div><div class='choice'>" + answerChoices[qCount][1] + "</div><div class='choice'>" + answerChoices[qCount][2] + "</div><div class='choice'>" + answerChoices[qCount][3] + "</div>");
-  $("#question-number").html("<h4>Question " + (qCount + 1) + " out of " + triviaQuestions.length + "</h4>");
+  $("#question").html("<h2>" + triviaQuestions[qstnCount] + "</h2>");
+  $("#choices").html("<div class='choice'>" + answerChoices[qstnCount][0] + "</div><div class='choice'>" + answerChoices[qstnCount][1] + "</div><div class='choice'>" + answerChoices[qstnCount][2] + "</div><div class='choice'>" + answerChoices[qstnCount][3] + "</div>");
+  $("#question-number").html("<h4>Question " + (qstnCount + 1) + " out of " + triviaQuestions.length + "</h4>");
 }
 
 function timer() {
@@ -55,7 +55,7 @@ function timer() {
       $("#choices").empty();
       $("#question-number").empty();
       notAnswered++;
-    	$("#question").html("<h2>You ran out of time! Correct Answer: " + correctAnswer[qCount] + "</h2>");
+    	$("#question").html("<h2>You ran out of time! Correct Answer: " + correctAnswer[qstnCount] + "</h2>");
     	setTimeout(advance, 2500);
       $("#countDown-timer").html("<h3>Time is Up!</h3>");
     }
@@ -67,8 +67,8 @@ function timer() {
 
 //Function will either advance to the next question or display the trivia game results
 function advance() {
-	if (qCount < 9) {
-	qCount++;
+	if (qstnCount < 9) {
+	qstnCount++;
 	gameTime = 20;
   displayGame();
   timer();
@@ -80,48 +80,58 @@ function advance() {
 
 //Displays trivia game results
 function results() {
-  $(".game-area").html("<h2 class='results'>Quiz Completed!" + "</h2>" + "<p class='results'>Correct Answers: " + numCorrect + "</p>" + "<p class='results'>Wrong Answers: " + numIncorrect + "</p>" + "<p class='results'>Not Answered: " + notAnswered + "</p>" + "<p class='text-center reset-button-container'><a class='btn btn-primary btn-lg reset-button' href='#' role='button'>Reset Trivia Challenge</a></p>");
+  $(".game-area").html("<h2 class='results'>Quiz Completed!" + "</h2>" + "<p class='results'>Correct Answers: " + numCorrect + "</p>" + "<p class='results'>Wrong Answers: " + numIncorrect + "</p>" + "<p class='results'>Not Answered: " + notAnswered + "</p>" + "<p class='results'><a class='btn btn-primary btn-lg resetBtn' href='#' role='button'>Reset Trivia Challenge</a></p>");
 }
 
 //reset game function
 function reset() {
-	qCount = 0;
+	qstnCount = 0;
 	numCorrect = 0;
 	numIncorrect = 0;
 	notAnswered = 0;
 	gameTime = 20;
-	displayGame();
-  timer();
+  $('.game-area').html('<div class="col-md-10 col-centered" id="intro"></div>' + '<div class="col-md-10 col-centered" id="start"></div>' + '<div class="col-md-10 col-centered" id="countDown-timer"></div>' +
+  '<div class="col-md-10 col-centered" id ="question"></div>' +
+  '<div class="col-md-10 col-centered" id="choices"></div>' +
+  '<div class="col-md-10 col-centered" id="question-number"></div>');
+  introCopy();
+  startButton();
 }
 
-$(document).ready(function() {
+
   function startButton() {
-    $("#start").html("<p class='text-center main-button-container'><a class='btn btn-primary btn-lg btn-block start-button' href='#' role='button'>Start Quiz</a></p>");
+    $("#start").html("<p><a class='btn btn-primary startBtn' href='#'>Start Quiz</a></p>");
   }
   startButton();
 
+  function introCopy() {
+  $("#intro").html("<p class='introCopy'>Welcome to the NBA Trivia Challenge! You will be given a series of 10 multiple choice questions with 20 seconds to answer each, Good Luck!</p>");
+  }
+  introCopy();
+
   //Once button is clicked game begins and creates html content
-  $("body").on("click", ".start-button", function(event){
+  $("body").on("click", ".startBtn", function(event){
 	   displayGame();
      timer();
+     $("#intro").empty();
      $("#start").empty();
   });
 
   //Resets the game
-  $("body").on("click", ".reset-button", function(event){
+  $("body").on("click", ".resetBtn", function(event){
     reset();
   });
 
   //Compares the string of the selected Answer with the string of the correct answer to determine whether correct or incorrect
   $("body").on("click", ".choice", function(event){
   	clickSelect = $(this).text();
-  	if(clickSelect === correctAnswer[qCount]) {
+  	if(clickSelect === correctAnswer[qstnCount]) {
   		clearInterval(clockInterval);
       numCorrect++;
       $("#choices").empty();
       $("#question-number").empty();
       $("#countDown-timer").html("<h3>Seconds left: 20</h3>");
-      $("#question").html("<h2>Correct! The answer is: " + correctAnswer[qCount] + "</h2>");
+      $("#question").html("<h2>Correct! The answer is: " + correctAnswer[qstnCount] + "</h2>");
     	setTimeout(advance, 2500);
   	}
   	else {
@@ -130,7 +140,7 @@ $(document).ready(function() {
       $("#choices").empty();
       $("#question-number").empty();
       $("#countDown-timer").html("<h3>Seconds left: 20</h3>");
-      $("#question").html("<h2>Wrong! The answer is: " + correctAnswer[qCount] + "</h2>");
+      $("#question").html("<h2>Wrong! The answer is: " + correctAnswer[qstnCount] + "</h2>");
     	setTimeout(advance, 2500);
   	}
   });
