@@ -1,27 +1,57 @@
-/* =================================================================================================
-   Andrew Heinke's custom styles
-======================================================================================================= */
+@font-face {
+    font-family: "NBA";
+    src: url('../fonts/NBA.ttf') format("truetype");
+}
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
+
 html {
   position: relative;
   min-height: 100%;
 }
 
 body {
-  font-family: 'Roboto Slab', serif;
+  font-family: 'Open Sans', serif;
   color: #333333;
   padding-top: 0px;
   background: #efefef;
-  margin-bottom: 100px;
 }
 
+.pageTitle {
+  font-family: NBA, Arial, 'sans-serf';
+  text-align: center;
+  font-size: 80px;
+}
+
+.navbar-default .navbar-brand {
+  font-weight: bold;
+  font-size: 22px;
+  color: #cccccc;
+}
+
+.navbar-default .navbar-brand:hover {
+  color: #3498db;
+}
+
+.navbar-default .navbar-nav>li>a {
+    color: #cccccc;
+}
+
+.navbar-default .navbar-nav>li>a:hover {
+    color: #3498db;
+}
 
 .row {
-  margin-top: 25px;
+  margin-top: 15px;
 }
 
 #gitLink {
   color: #f1c40f;
 }
+
+.navbar {
+  margin-bottom: 0px;
+}
+
 
 footer.navbar-default.navbar-fixed-bottom
  {
