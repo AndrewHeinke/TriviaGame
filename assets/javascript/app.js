@@ -78,10 +78,12 @@ function advance() {
 	}
 }
 
+//Displays trivia game results
 function results() {
   $(".game-area").html("<h2 class='results'>Quiz Completed!" + "</h2>" + "<p class='results'>Correct Answers: " + numCorrect + "</p>" + "<p class='results'>Wrong Answers: " + numIncorrect + "</p>" + "<p class='results'>Not Answered: " + notAnswered + "</p>" + "<p class='text-center reset-button-container'><a class='btn btn-primary btn-lg reset-button' href='#' role='button'>Reset Trivia Challenge</a></p>");
 }
 
+//reset game function
 function reset() {
 	qCount = 0;
 	numCorrect = 0;
@@ -107,7 +109,6 @@ $(document).ready(function() {
 
   //Resets the game
   $("body").on("click", ".reset-button", function(event){
-
     reset();
   });
 
