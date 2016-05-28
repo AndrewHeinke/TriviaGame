@@ -4,7 +4,7 @@ var numIncorrect = 0;
 var notAnswered = 0;
 var qCount = 0;
 var clockInterval;
-var gameTime = 30;
+var gameTime = 20;
 var gameStart;
 var clickSelect;
 
@@ -40,38 +40,36 @@ var correctAnswer = [
 ];
 
 function displayGame() {
+  $("#countDown-timer").html("<h3>Seconds left: " + gameTime + "</h3>");
   $("#question").html("<h2>" + triviaQuestions[qCount] + "</h2>");
   $("#choices").html("<p class='choice'>" + answerChoices[qCount][0] + "</p><p class='choice'>" + answerChoices[qCount][1] + "</p><p class='choice'>" + answerChoices[qCount][2] + "</p><p class='choice'>" + answerChoices[qCount][3] + "</p>");
+  $("#question-number").html("<h4>Question " + (qCount + 1) + " out of " + triviaQuestions.length + "</h4>");
 }
 
 function timer() {
-	var i = 30;
-  clockInterval = setInterval(function() {
-    $("#countDown-timer").html("<h3>Seconds left: " + i + "</h3>");
-    if (i === 0) {
-      clearInterval();
-      timeoutLoss();
-      $("#countDown-timer").empty();
-      //qCount++;
+	clockInterval = setInterval(timeLimit, 1000);
+  function timeLimit() {
+    $("#countDown-timer").html("<h3>Seconds left: " + gameTime + "</h3>");
+    if (gameTime === 0) {
+      clearInterval(clockInterval);
+      $("#choices").empty();
+      $("#question-number").empty();
+      notAnswered++;
+    	$("#question").html("<h2>You ran out of time! Correct Answer: " + correctAnswer[qCount] + "</h2>");
+    	setTimeout(advance, 2500);
+      $("#countDown-timer").html("<h3>Time is Up!</h3>");
     }
-    if (i > 0) {
-      i--;
+    if (gameTime > 0) {
+      gameTime--;
     }
-  }, 1000);
-}
-
-//If player runs out of time, increment not answered count and display correct answer
-function timeoutLoss() {
-	notAnswered++;
-	$("#question").html("<h2>Time's Up! Correct Answer: " + correctAnswer[qCount] + "</h2>");
-	setTimeout(advance, 2500);
+  }
 }
 
 //Function will either advance to the next question or display the trivia game results
 function advance() {
 	if (qCount < 9) {
 	qCount++;
-	gameTime = 30;
+	gameTime = 20;
   displayGame();
   timer();
 	}
@@ -81,7 +79,7 @@ function advance() {
 }
 
 function results() {
-  $(".game-area").html("<h2 class='results'>Quiz Completed!" + "</h2>" + "<p>Correct Answers: " + numCorrect + "</p>" + "<p>Wrong Answers: " + numIncorrect + "</p>" + "<p>Not Answered: " + notAnswered + "</p>" + "<p class='text-center reset-button-container'><a class='btn btn-primary btn-lg btn-block reset-button' href='#' role='button'>Reset The Quiz!</a></p>");
+  $(".game-area").html("<h2 class='results'>Quiz Completed!" + "</h2>" + "<p class='results'>Correct Answers: " + numCorrect + "</p>" + "<p class='results'>Wrong Answers: " + numIncorrect + "</p>" + "<p class='results'>Not Answered: " + notAnswered + "</p>" + "<p class='text-center reset-button-container'><a class='btn btn-primary btn-lg reset-button' href='#' role='button'>Reset Trivia Challenge</a></p>");
 }
 
 function reset() {
@@ -89,7 +87,7 @@ function reset() {
 	numCorrect = 0;
 	numIncorrect = 0;
 	notAnswered = 0;
-	gameTime = 30;
+	gameTime = 20;
 	displayGame();
   timer();
 }
@@ -109,7 +107,8 @@ $(document).ready(function() {
 
   //Resets the game
   $("body").on("click", ".reset-button", function(event){
-  	resetGame();
+
+    reset();
   });
 
   //Compares the string of the selected Answer with the string of the correct answer to determine whether correct or incorrect
@@ -118,12 +117,18 @@ $(document).ready(function() {
   	if(clickSelect === correctAnswer[qCount]) {
   		clearInterval(clockInterval);
       numCorrect++;
+      $("#choices").empty();
+      $("#question-number").empty();
+      $("#countDown-timer").html("<h3>Seconds left: 20</h3>");
       $("#question").html("<h2>Correct! The answer is: " + correctAnswer[qCount] + "</h2>");
     	setTimeout(advance, 2500);
   	}
   	else {
   		clearInterval(clockInterval);
       numIncorrect++;
+      $("#choices").empty();
+      $("#question-number").empty();
+      $("#countDown-timer").html("<h3>Seconds left: 20</h3>");
       $("#question").html("<h2>Wrong! The answer is: " + correctAnswer[qCount] + "</h2>");
     	setTimeout(advance, 2500);
   	}
