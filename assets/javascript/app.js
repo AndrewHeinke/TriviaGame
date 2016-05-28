@@ -38,7 +38,9 @@ var correctAnswer = [
   "David Robinson",
   "Tony Parker"
 ];
+
 $(document).ready(function() {
+
 function displayGame() {
   $("#countDown-timer").html("<h3>Seconds left: " + gameTime + "</h3>");
   $("#question").html("<h2>" + triviaQuestions[qstnCount] + "</h2>");
