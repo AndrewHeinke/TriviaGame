@@ -14,18 +14,6 @@ body {
   margin-bottom: 100px;
 }
 
-.footer {
-  position: absolute;
-  font-family: 'Roboto Slab', serif;
-  bottom: 0;
-  width: 100%;
-  /* Set the fixed height of the footer here */
-  height: 40px;
-  padding-top: 10px;
-  color: #ffffff;
-  text-align: center;
-  background-color: #363C3E;
-}
 
 .row {
   margin-top: 25px;
@@ -33,4 +21,22 @@ body {
 
 #gitLink {
   color: #f1c40f;
+}
+
+footer.navbar-default.navbar-fixed-bottom
+ {
+      background:#363C3E;
+      color:white;
+      padding:1em 0;
+ }
+ footer.navbar-default.navbar-fixed-bottom p
+ {
+      margin:0;
+ }
+
+@media only screen and (max-device-width: 480px) {
+  footer.navbar-default.navbar-fixed-bottom
+   {
+        text-align: center;
+   }
 }
