@@ -15,7 +15,7 @@ var triviaQuestions = ["What year was the National Basketball Association first 
 var answerChoices = [
   ["1935", "1945", "1946", "1958"],
   ["The Chicago Bulls", "The Los Angeles Lakers", "The Boston Celtics", "The Philadelphia 76ers"],
-  ["He's named after his Uncle Kobe", "He's named after a type of steak", "He's named after the doctor who delivered him.", "He's named after a city in Southern California where his parents met"],
+  ["He's named after his Uncle Kobe", "He's named after a type of steak", "He's named after the doctor who delivered him.", "He's named after a city in California"],
   ["Hakeem Olajuwon & Sam Bowie", "Patrick Ewing & Hakeem Olajuwon", "Charles Barkley & Hakeem Olajuwon", "Karl Malone & Sam Bowie"],
   ["The Orlando Magic", "The LA Clippers", "The Chicago Bulls", "The Golden State Warriors"],
   ["82", "84", "86", "88"],
