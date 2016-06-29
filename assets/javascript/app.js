@@ -34,7 +34,7 @@ var correctAnswer = [
   "The Orlando Magic",
   "82",
   "30",
-  "Bill Cousy",
+  "Jerry West",
   "David Robinson",
   "Tony Parker"
 ];

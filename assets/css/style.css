@@ -2,8 +2,6 @@
     font-family: "NBA";
     src: url('../fonts/NBA.ttf') format("truetype");
 }
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
-
 html {
   position: relative;
   min-height: 100%;
@@ -96,23 +94,6 @@ h3 {
 .right {
   text-align: right;
 }
-.navbar-default .navbar-brand {
-  font-weight: bold;
-  font-size: 22px;
-  color: #cccccc;
-}
-
-.navbar-default .navbar-brand:hover {
-  color: #3498db;
-}
-
-.navbar-default .navbar-nav>li>a {
-    color: #cccccc;
-}
-
-.navbar-default .navbar-nav>li>a:hover {
-    color: #3498db;
-}
 
 .row {
   margin-top: 15px;
@@ -156,11 +137,6 @@ h3 {
   color: #fff;
 }
 
-.navbar-default .navbar-collapse, .navbar-default .navbar-form {
-    border-color: #e7e7e7;
-    text-align: left;
-}
-
 footer.navbar-default.navbar-fixed-bottom
  {
       background:#363C3E;
@@ -176,12 +152,7 @@ footer.navbar-default.navbar-fixed-bottom
    footer.navbar-default.navbar-fixed-bottom p {
      text-align: center;
    }
-   .navbar-default .navbar-collapse, .navbar-default .navbar-form {
-       border-color: #e7e7e7;
-       text-align: left;
-       font-size: 20px;
-       color: #333;
-   }
+   
    h2 {
      font-size: 22px;
      line-height: 1.25;
